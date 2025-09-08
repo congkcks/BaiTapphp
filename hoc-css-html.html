@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Học CSS & HTML</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // ...copy toàn bộ script từ index.php...
+    </script>
+</head>
+
+<body data-knowledge>
+    <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
+        <span id="aside-icon">☰</span>
+    </button>
+    <header class="navbar">
+        <div class="navbar-top">
+            <div class="student-info">
+                <span><b>Vũ Văn Hà Công</b></span> | Khoa CNTT | Lớp CNTT4-K63
+            </div>
+            <form class="search-bar" method="get" action="#">
+                <input type="text" name="search" placeholder="Tìm kiếm bài tập, lý thuyết..." />
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+        <nav class="navbar-menu">
+            <ul>
+                <li><a href="index.php">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#bai">Bài tập ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#b1">Bài 1 – Tổng số nguyên tố</a></li>
+                        <li><a href="#b2">Bài 2 – Chuỗi & epsilon</a></li>
+                        <li><a href="#b3">Bài 3 – Biểu thức (ảnh)</a></li>
+                        <li><a href="#b4">Bài 4 – Nhập đến 0</a></li>
+                        <li><a href="#b5">Bài 5 – Số hoàn hảo</a></li>
+                        <li><a href="#b6">Bài 6 – Giai thừa</a></li>
+                        <li><a href="#b7">Bài 7 – Ước số</a></li>
+                        <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
+                        <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
+                        <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
+                        <li><a href="#b11">Bài 11 – Form</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#tai-lieu">Tài liệu ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="hoc-php.html">Học PHP</a></li>
+                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                        <li><a href="#lythuyet">Lý thuyết</a></li>
+                        <li><a href="#huongdan">Hướng dẫn</a></li>
+                    </ul>
+                </li>
+                <li><a href="#lienhe">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="aside">
+            <div class="brand">Thực hành <span>HTML/CSS/PHP</span></div>
+            <div class="nav">
+                <a href="#b1">Bài 1 – Tổng số nguyên tố</a>
+                <a href="#b2">Bài 2 – Chuỗi & epsilon</a>
+                <a href="#b3">Bài 3 – Biểu thức (ảnh)</a>
+                <a href="#b4">Bài 4 – Nhập đến 0</a>
+                <a href="#b5">Bài 5 – Số hoàn hảo</a>
+                <a href="#b6">Bài 6 – Giai thừa</a>
+                <a href="#b7">Bài 7 – Ước số</a>
+                <a href="#b8">Bài 8 – Đếm âm/dương</a>
+                <a href="#b9">Bài 9 – hh:mm:ss</a>
+                <a href="#b10">Bài 10 – PERSON/SINHVIEN</a>
+                <a href="#b11">Bài 11 – Form</a>
+            </div>
+        </aside>
+        <!-- Phần main nội dung học CSS & HTML -->
+        <main>
+            <h1>Học CSS &amp; HTML từ cơ bản đến nâng cao</h1>
+            <div class="subtitle">Khám phá cách xây dựng giao diện web đẹp, hiện đại và chuẩn responsive.</div>
+            <section class="card">
+                <header>1. HTML là gì?</header>
+                <div class="body">
+                    <p>HTML (HyperText Markup Language) là ngôn ngữ đánh dấu giúp xây dựng cấu trúc trang web. Các thẻ
+                        HTML
+                        định nghĩa tiêu đề, đoạn văn, hình ảnh, liên kết...</p>
+                    <ul>
+                        <li>Thẻ cơ bản: &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;...</li>
+                        <li>Thuộc tính, phân cấp, layout</li>
+                        <li>Form nhập liệu, bảng, danh sách</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="card">
+                <header>2. CSS là gì?</header>
+                <div class="body">
+                    <p>CSS (Cascading Style Sheets) dùng để định dạng giao diện, màu sắc, bố cục cho trang web. CSS giúp
+                        website đẹp, chuyên nghiệp và dễ dùng trên mọi thiết bị.</p>
+                    <ul>
+                        <li>Chọn phần tử, thuộc tính CSS</li>
+                        <li>Box model, flexbox, grid</li>
+                        <li>Responsive, animation, hiệu ứng</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="card">
+                <header>3. Ví dụ HTML &amp; CSS thực tế</header>
+                <div class="body">
+                    <pre class="code">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body { background: #f3f8ff; color: #2563eb; }
+    h1 { text-align: center; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Xin chào HTML &amp; CSS!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+            </section>
+            <section class="card">
+                <header>4. Mẹo học HTML &amp; CSS nhanh</header>
+                <div class="body">
+                    <ul>
+                        <li>Thực hành code mỗi ngày, thử sửa các ví dụ.</li>
+                        <li>Đọc tài liệu chính thức tại <a href="https://developer.mozilla.org/vi/docs/Web/HTML"
+                                target="_blank">MDN HTML</a> và <a href="https://developer.mozilla.org/vi/docs/Web/CSS"
+                                target="_blank">MDN CSS</a></li>
+                        <li>Tham gia cộng đồng, hỏi đáp trên Stack Overflow, Facebook group...</li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="soft">
+            <footer>Made with ❤️ — có thể chỉnh màu/spacing nhanh trong phần <span class="code">&lt;style&gt;</span>.
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

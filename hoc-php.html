@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Học PHP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-knowledge>
+    <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
+        <span id="aside-icon">☰</span>
+    </button>
+    <header class="navbar">
+        <div class="navbar-top">
+            <div class="student-info">
+                <span><b>Vũ Văn Hà Công</b></span> | Khoa CNTT | Lớp CNTT4-K63
+            </div>
+            <form class="search-bar" method="get" action="#">
+                <input type="text" name="search" placeholder="Tìm kiếm bài tập, lý thuyết..." />
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+        <nav class="navbar-menu">
+            <ul>
+                <li><a href="index.php">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#bai">Bài tập ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#b1">Bài 1 – Tổng số nguyên tố</a></li>
+                        <li><a href="#b2">Bài 2 – Chuỗi & epsilon</a></li>
+                        <li><a href="#b3">Bài 3 – Biểu thức (ảnh)</a></li>
+                        <li><a href="#b4">Bài 4 – Nhập đến 0</a></li>
+                        <li><a href="#b5">Bài 5 – Số hoàn hảo</a></li>
+                        <li><a href="#b6">Bài 6 – Giai thừa</a></li>
+                        <li><a href="#b7">Bài 7 – Ước số</a></li>
+                        <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
+                        <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
+                        <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
+                        <li><a href="#b11">Bài 11 – Form</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#tai-lieu">Tài liệu ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="hoc-php.html">Học PHP</a></li>
+                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                        <li><a href="#lythuyet">Lý thuyết</a></li>
+                        <li><a href="#huongdan">Hướng dẫn</a></li>
+                    </ul>
+                </li>
+                <li><a href="#lienhe">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            <h1>Khám phá PHP từ cơ bản đến nâng cao</h1>
+            <div class="subtitle">Học lập trình PHP qua lý thuyết, ví dụ thực tế và bài tập ứng dụng.</div>
+            <section class="card">
+                <header>1. PHP là gì?</header>
+                <div class="body">
+                    <p>PHP (Hypertext Preprocessor) là ngôn ngữ lập trình phía máy chủ, giúp xây dựng website động,
+                        xử lý
+                        dữ liệu, kết nối CSDL, tạo API...</p>
+                    <ul>
+                        <li>Chạy được trên nhiều hệ điều hành (Windows, Linux...)</li>
+                        <li>Dễ học, cú pháp gần với C, JavaScript</li>
+                        <li>Được dùng nhiều trong các hệ thống quản lý nội dung (WordPress, Joomla...)</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="card">
+                <header>2. Ví dụ thực tế: Form nhập và xử lý dữ liệu</header>
+                <div class="body">
+                    <form method="post">
+                        <label>Nhập tên của bạn:</label>
+                        <input name="ten" placeholder="Ví dụ: Hà Công">
+                        <button type="submit">Gửi</button>
+                    </form>
+                    <?php if (!empty($_POST['ten'])): ?>
+                    <div class="kq">Xin chào <b>
+                            <?= htmlspecialchars($_POST['ten']) ?>
+                        </b>! Bạn vừa gửi dữ liệu bằng
+                        PHP.</div>
+                    <?php endif; ?>
+                </div>
+            </section>
+            <section class="card">
+                <header>3. Bài tập nhỏ</header>
+                <div class="body">
+                    <ul>
+                        <li>Viết chương trình PHP in ra các số chẵn từ 1 đến 100.</li>
+                        <li>Tạo form nhập 2 số, tính tổng bằng PHP.</li>
+                        <li>Viết hàm kiểm tra số nguyên tố.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="card">
+                <header>4. Mẹo học PHP nhanh</header>
+                <div class="body">
+                    <ul>
+                        <li>Thực hành code mỗi ngày, thử sửa các ví dụ.</li>
+                        <li>Đọc tài liệu chính thức tại <a href="https://www.php.net/manual/vi/"
+                                target="_blank">php.net</a>
+                        </li>
+                        <li>Tham gia cộng đồng, hỏi đáp trên Stack Overflow, Facebook group...</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

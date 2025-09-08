@@ -420,6 +420,8 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
       <li class="dropdown">
         <a href="#tai-lieu">Tài liệu ▼</a>
         <ul class="dropdown-content">
+          <li><a href="hoc-php.html">Học PHP</a></li>
+          <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
           <li><a href="#lythuyet">Lý thuyết</a></li>
           <li><a href="#huongdan">Hướng dẫn</a></li>
         </ul>
