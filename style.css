@@ -49,6 +49,11 @@ body {
     top: 0;
     height: 100vh;
     overflow: auto;
+    transition: transform 0.3s ease;
+}
+
+.aside.hidden {
+    transform: translateX(-100%);
 }
 
 .brand {
@@ -418,5 +423,5 @@ body[data-knowledge] main {
     font-size: 22px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(56, 189, 248, 0.12);
-    display: none;
+    display: block;
 }

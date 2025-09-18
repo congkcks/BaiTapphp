@@ -9,9 +9,16 @@
 </head>
 
 <body data-knowledge>
-    <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
-        <span id="aside-icon">☰</span>
-    </button>
+    <div class="header-banner"
+        style="background:linear-gradient(90deg,#2196f3 60%,#fff 100%);color:#fff;padding:32px 0 18px 0;text-align:center;box-shadow:0 2px 12px rgba(33,150,243,0.08);">
+        <div style="font-size:38px;font-weight:900;letter-spacing:1px;line-height:1.1;">
+            <span style="vertical-align:middle;">🚀</span> HỌC LẬP TRÌNH WEB HIỆN ĐẠI <span
+                style="vertical-align:middle;">✨</span>
+        </div>
+        <div style="font-size:18px;font-weight:400;margin-top:8px;opacity:.95;">Khám phá HTML, CSS, PHP, JavaScript và
+            nhiều công nghệ web khác!</div>
+    </div>
+
     <header class="navbar">
         <div class="navbar-top">
             <div class="student-info">
@@ -38,23 +45,34 @@
                         <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
                         <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
                         <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
-                        <li><a href="#b11">Bài 11 – Form</a></li>
+                        <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#tai-lieu">Tài liệu ▼</a>
-                    <ul class="dropdown-content">
-                        <li><a href="hoc-php.html">Học PHP</a></li>
-                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
-                        <li><a href="#lythuyet">Lý thuyết</a></li>
-                        <li><a href="#huongdan">Hướng dẫn</a></li>
-                    </ul>
-                </li>
-                <li><a href="#lienhe">Liên hệ</a></li>
+                <li><a href="gioi-thieu-js.html">JavaScript</a></li>
+                <li><a href="gioi-thieu-welscholl.html">W3Schools</a></li>
+                <li><a href="hoc-php.html">Học PHP</a></li>
+                <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
             </ul>
         </nav>
     </header>
     <div class="container">
+        <aside class="aside">
+            <div class="brand" title="Học PHP">
+                <span>Học</span> PHP
+                <span class="brand-emoji" style="font-size:22px;">🐘</span>
+            </div>
+            <div class="nav">
+                <a href="#php-intro">PHP là gì?</a>
+                <a href="#php-syntax">Cú pháp cơ bản</a>
+                <a href="#php-variables">Biến & kiểu dữ liệu</a>
+                <a href="#php-arrays">Mảng (Arrays)</a>
+                <a href="#php-functions">Hàm (Functions)</a>
+                <a href="#php-oop">Lập trình OOP</a>
+                <a href="#php-database">Kết nối Database</a>
+                <a href="#php-frameworks">Framework phổ biến</a>
+            </div>
+        </aside>
         <main>
             <h1>Khám phá PHP từ cơ bản đến nâng cao</h1>
             <div class="subtitle">Học lập trình PHP qua lý thuyết, ví dụ thực tế và bài tập ứng dụng.</div>
@@ -111,6 +129,83 @@
             </section>
         </main>
     </div>
+    <footer class="footer-banner">
+        <div class="footer-content">
+            <span class="footer-icon">🌐</span>
+            <span class="footer-title">HỌC LẬP TRÌNH – KẾT NỐI TƯƠNG LAI</span>
+            <span class="footer-icon">🚀</span>
+            <div class="footer-desc">Cảm ơn bạn đã ghé thăm website. Chúc bạn học tập hiệu quả và thành công!</div>
+        </div>
+    </footer>
+    <style>
+        .footer-banner {
+            background: linear-gradient(90deg, #2196f3 60%, #ffd580 100%);
+            color: #fff;
+            padding: 28px 0 18px 0;
+            text-align: center;
+            box-shadow: 0 -4px 24px rgba(33, 150, 243, 0.13);
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-banner .footer-title {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .footer-banner .footer-icon {
+            font-size: 32px;
+            vertical-align: middle;
+        }
+
+        .footer-banner .footer-desc {
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 10px;
+            opacity: .97;
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .footer-banner .footer-title {
+                font-size: 18px;
+            }
+
+            .footer-banner .footer-desc {
+                font-size: 13px;
+            }
+
+            .footer-banner .footer-icon {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <script>
+        function toggleAside() {
+            const aside = document.querySelector('.aside');
+            const icon = document.getElementById('aside-icon');
+            if (aside) {
+                // Desktop: dùng class 'hidden', Mobile: dùng class 'show'
+                if (window.innerWidth <= 900) {
+                    aside.classList.toggle('show');
+                } else {
+                    aside.classList.toggle('hidden');
+                }
+
+                if (icon) {
+                    const isHidden = aside.classList.contains('hidden') || !aside.classList.contains('show');
+                    icon.textContent = (window.innerWidth <= 900) ?
+                        (aside.classList.contains('show') ? '✕' : '☰') :
+                        (aside.classList.contains('hidden') ? '☰' : '✕');
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

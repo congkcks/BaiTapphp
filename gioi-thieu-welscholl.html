@@ -3,69 +3,231 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Giới thiệu về W3Schools</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body data-knowledge>
-    <div class="navbar">
+    <div class="header-banner"
+        style="background:linear-gradient(90deg,#2196f3 60%,#fff 100%);color:#fff;padding:32px 0 18px 0;text-align:center;box-shadow:0 2px 12px rgba(33,150,243,0.08);">
+        <div style="font-size:38px;font-weight:900;letter-spacing:1px;line-height:1.1;">
+            <span style="vertical-align:middle;">🚀</span> HỌC LẬP TRÌNH WEB HIỆN ĐẠI <span
+                style="vertical-align:middle;">✨</span>
+        </div>
+        <div style="font-size:18px;font-weight:400;margin-top:8px;opacity:.95;">Khám phá HTML, CSS, PHP, JavaScript và
+            nhiều công nghệ web khác!</div>
+    </div>
+    <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
+        <span id="aside-icon">☰</span>
+    </button>
+    <header class="navbar">
         <div class="navbar-top">
-            <div class="student-info">Vũ Văn Hà Công - Khoa CNTT - Lớp CNTT4-K63</div>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm...">
-                <button>Tìm</button>
+            <div class="student-info">
+                <span><b>Vũ Văn Hà Công</b></span> | Khoa CNTT | Lớp CNTT4-K63
             </div>
+            <form class="search-bar" method="get" action="#">
+                <input type="text" name="search" placeholder="Tìm kiếm bài tập, lý thuyết..." />
+                <button type="submit">🔍</button>
+            </form>
         </div>
         <nav class="navbar-menu">
             <ul>
                 <li><a href="index.php">Trang chủ</a></li>
-                <li><a href="gioi-thieu-js.html">Giới thiệu JS</a></li>
-                <li><a href="gioi-thieu-welscholl.html">Giới thiệu Welscholl</a></li>
+                <li class="dropdown">
+                    <a href="#bai">Bài tập ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#b1">Bài 1 – Tổng số nguyên tố</a></li>
+                        <li><a href="#b2">Bài 2 – Chuỗi & epsilon</a></li>
+                        <li><a href="#b3">Bài 3 – Biểu thức (ảnh)</a></li>
+                        <li><a href="#b4">Bài 4 – Nhập đến 0</a></li>
+                        <li><a href="#b5">Bài 5 – Số hoàn hảo</a></li>
+                        <li><a href="#b6">Bài 6 – Giai thừa</a></li>
+                        <li><a href="#b7">Bài 7 – Ước số</a></li>
+                        <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
+                        <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
+                        <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
+                        <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a></li>
+                    </ul>
+                </li>
+                <li><a href="gioi-thieu-js.html">JavaScript</a></li>
+                <li><a href="gioi-thieu-welscholl.html">W3Schools</a></li>
+                <li><a href="hoc-php.html">Học PHP</a></li>
+                <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
             </ul>
         </nav>
+    </header>
+    <div class="container">
+        <aside class="aside">
+            <div class="brand" title="W3Schools">
+                <span>W3</span>Schools
+                <span class="brand-emoji" style="font-size:22px;">🌐</span>
+            </div>
+            <div class="nav">
+                <a href="#w3-intro">Giới thiệu W3Schools</a>
+                <a href="#w3-features">Tính năng nổi bật</a>
+                <a href="#w3-benefits">Lợi ích học tập</a>
+                <a href="#w3-guide">Hướng dẫn sử dụng</a>
+                <a href="#w3-resources">Tài nguyên học tập</a>
+            </div>
+        </aside>
+        <main>
+            <h1>Giới thiệu về W3Schools</h1>
+            <div class="subtitle">Nền tảng học lập trình web hàng đầu thế giới</div>
+
+            <section class="card" id="w3-intro">
+                <header>W3Schools là gì?</header>
+                <div class="body">
+                    <p>W3Schools là một trang web giáo dục trực tuyến nổi tiếng, chuyên cung cấp các khóa học và tài
+                        liệu về lập trình web. Đây là nguồn tài nguyên đáng tin cậy cho developers trên toàn thế giới.
+                    </p>
+                </div>
+            </section>
+
+            <section class="card" id="w3-features">
+                <header>Các chủ đề học tập chính</header>
+                <div class="body">
+                    <ul>
+                        <li><a href="https://www.w3schools.com/html/default.asp" target="_blank">HTML</a> – Cấu trúc
+                            trang web</li>
+                        <li><a href="https://www.w3schools.com/css/default.asp" target="_blank">CSS</a> – Thiết kế giao
+                            diện</li>
+                        <li><a href="https://www.w3schools.com/js/default.asp" target="_blank">JavaScript</a> – Lập
+                            trình web động</li>
+                        <li><a href="https://www.w3schools.com/python/default.asp" target="_blank">Python</a> – Lập
+                            trình đa năng</li>
+                        <li><a href="https://www.w3schools.com/sql/default.asp" target="_blank">SQL</a> – Quản lý cơ sở
+                            dữ liệu</li>
+                        <li><a href="https://www.w3schools.com/php/default.asp" target="_blank">PHP</a> – Lập trình web
+                            server</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card" id="w3-benefits">
+                <header>Lợi ích khi học trên W3Schools</header>
+                <div class="body">
+                    <ul>
+                        <li>Học từng bước từ cơ bản đến nâng cao</li>
+                        <li>Thử code trực tiếp trên trình duyệt với <a href="https://www.w3schools.com/tryit/"
+                                target="_blank">Try it Yourself</a></li>
+                        <li>Làm bài tập, quiz, kiểm tra kiến thức</li>
+                        <li>Nhận chứng chỉ nếu muốn</li>
+                        <li>Giao diện thân thiện, dễ sử dụng, miễn phí</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card" id="w3-guide">
+                <header>Hướng dẫn sử dụng W3Schools</header>
+                <div class="body">
+                    <ol>
+                        <li>Chọn chủ đề muốn học (HTML, CSS, JS...)</li>
+                        <li>Đọc lý thuyết, xem ví dụ, thử code trực tiếp</li>
+                        <li>Làm bài tập, quiz để kiểm tra kiến thức</li>
+                        <li>Có thể đăng ký tài khoản để lưu tiến trình học</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="card" id="w3-resources">
+                <header>Tham khảo thêm</header>
+                <div class="body">
+                    <ul>
+                        <li><a href="https://www.w3schools.com/" target="_blank">Trang chủ W3Schools</a></li>
+                        <li><a href="https://www.w3schools.com/howto/default.asp" target="_blank">Hướng dẫn thực
+                                hành</a></li>
+                        <li><a href="https://www.w3schools.com/exercises/index.php" target="_blank">Bài tập thực
+                                hành</a></li>
+                        <li><a href="https://www.w3schools.com/quiztest/default.asp" target="_blank">Quiz kiểm tra kiến
+                                thức</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
     </div>
-    <main>
-        <h1>Giới thiệu về W3Schools</h1>
-        <p><b>W3Schools</b> là website học lập trình lớn nhất thế giới, cung cấp tài liệu, ví dụ, bài tập và trình biên
-            tập trực tuyến cho nhiều ngôn ngữ như HTML, CSS, JavaScript, Python, SQL, PHP...</p>
-        <h2>Các chủ đề học nổi bật</h2>
-        <ul>
-            <li><a href="https://www.w3schools.com/html/default.asp" target="_blank">HTML</a> – Ngôn ngữ xây dựng trang
-                web</li>
-            <li><a href="https://www.w3schools.com/css/default.asp" target="_blank">CSS</a> – Thiết kế giao diện web
-            </li>
-            <li><a href="https://www.w3schools.com/js/default.asp" target="_blank">JavaScript</a> – Lập trình web động
-            </li>
-            <li><a href="https://www.w3schools.com/python/default.asp" target="_blank">Python</a> – Lập trình đa năng
-            </li>
-            <li><a href="https://www.w3schools.com/sql/default.asp" target="_blank">SQL</a> – Quản lý cơ sở dữ liệu</li>
-            <li><a href="https://www.w3schools.com/php/default.asp" target="_blank">PHP</a> – Lập trình web server</li>
-        </ul>
-        <h2>Lợi ích khi học trên W3Schools</h2>
-        <ul>
-            <li>Học từng bước từ cơ bản đến nâng cao</li>
-            <li>Thử code trực tiếp trên trình duyệt với <a href="https://www.w3schools.com/tryit/" target="_blank">Try
-                    it Yourself</a></li>
-            <li>Làm bài tập, quiz, kiểm tra kiến thức</li>
-            <li>Nhận chứng chỉ nếu muốn</li>
-            <li>Giao diện thân thiện, dễ sử dụng, miễn phí</li>
-        </ul>
-        <h2>Hướng dẫn sử dụng W3Schools</h2>
-        <ol>
-            <li>Chọn chủ đề muốn học (HTML, CSS, JS...)</li>
-            <li>Đọc lý thuyết, xem ví dụ, thử code trực tiếp</li>
-            <li>Làm bài tập, quiz để kiểm tra kiến thức</li>
-            <li>Có thể đăng ký tài khoản để lưu tiến trình học</li>
-        </ol>
-        <h2>Tham khảo thêm</h2>
-        <ul>
-            <li><a href="https://www.w3schools.com/" target="_blank">Trang chủ W3Schools</a></li>
-            <li><a href="https://www.w3schools.com/howto/default.asp" target="_blank">Hướng dẫn thực hành</a></li>
-            <li><a href="https://www.w3schools.com/exercises/index.php" target="_blank">Bài tập thực hành</a></li>
-            <li><a href="https://www.w3schools.com/quiztest/default.asp" target="_blank">Quiz kiểm tra kiến thức</a>
-            </li>
-        </ul>
+    <li><a href="https://www.w3schools.com/quiztest/default.asp" target="_blank">Quiz kiểm tra kiến thức</a>
+    </li>
+    </ul>
     </main>
+    <footer class="footer-banner">
+        <div class="footer-content">
+            <span class="footer-icon">🌐</span>
+            <span class="footer-title">HỌC LẬP TRÌNH – KẾT NỐI TƯƠNG LAI</span>
+            <span class="footer-icon">🚀</span>
+            <div class="footer-desc">Cảm ơn bạn đã ghé thăm website. Chúc bạn học tập hiệu quả và thành công!</div>
+        </div>
+    </footer>
+    <style>
+        .footer-banner {
+            background: linear-gradient(90deg, #2196f3 60%, #ffd580 100%);
+            color: #fff;
+            padding: 28px 0 18px 0;
+            text-align: center;
+            box-shadow: 0 -4px 24px rgba(33, 150, 243, 0.13);
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-banner .footer-title {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .footer-banner .footer-icon {
+            font-size: 32px;
+            vertical-align: middle;
+        }
+
+        .footer-banner .footer-desc {
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 10px;
+            opacity: .97;
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .footer-banner .footer-title {
+                font-size: 18px;
+            }
+
+            .footer-banner .footer-desc {
+                font-size: 13px;
+            }
+
+            .footer-banner .footer-icon {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <script>
+        function toggleAside() {
+            const aside = document.querySelector('.aside');
+            const icon = document.getElementById('aside-icon');
+            if (aside) {
+                // Desktop: dùng class 'hidden', Mobile: dùng class 'show'
+                if (window.innerWidth <= 900) {
+                    aside.classList.toggle('show');
+                } else {
+                    aside.classList.toggle('hidden');
+                }
+
+                if (icon) {
+                    const isHidden = aside.classList.contains('hidden') || !aside.classList.contains('show');
+                    icon.textContent = (window.innerWidth <= 900) ?
+                        (aside.classList.contains('show') ? '✕' : '☰') :
+                        (aside.classList.contains('hidden') ? '☰' : '✕');
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

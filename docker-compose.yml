@@ -1,0 +1,50 @@
+# Dockerfile cho ứng dụng PHP Bài Tập - VuVanHaCong
+version: '3.8'
+
+services:
+  # Web server PHP
+  web:
+    build: .
+    container_name: baitap-php-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  # MySQL Database (tùy chọn - nếu cần database)
+  db:
+    image: mysql:8.0
+    container_name: baitap-php-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: baitap_db
+      MYSQL_USER: baitap_user
+      MYSQL_PASSWORD: baitap_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+  # phpMyAdmin (tùy chọn - để quản lý database)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: baitap-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: baitap_user
+      PMA_PASSWORD: baitap_pass
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

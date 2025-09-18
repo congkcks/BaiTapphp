@@ -1,22 +1,9 @@
 <?php
-?>
-<!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bài tập HTML/CSS/PHP – thực hành cơ bản</title>
-<link rel="stylesheet" href="style.css">
-<!-- Giao diện hiện đại – tối giản: xanh da trời, trắng, xám, đen -->
-</head>
-<body>
-  <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
-    <span id="aside-icon">☰</span>
-  </button>
-<?php
 session_start();
 
-/* ========= Helpers ========= */
+/* ========= Helper Functions ========= */
+
+// Bài 1: Kiểm tra số nguyên tố
 function is_prime($x) {
     if ($x < 2) return false;
     if ($x % 2 == 0) return $x == 2;
@@ -26,12 +13,14 @@ function is_prime($x) {
     return true;
 }
 
+// Bài 1: Tính tổng các số nguyên tố từ 1 đến 100
 function sum_primes_1_100() {
     $sum = 0;
     for ($i = 2; $i <= 100; $i++) if (is_prime($i)) $sum += $i;
     return $sum;
 }
 
+// Bài 2a: Tính tổng chuỗi T = 1/2 + 2/3 + ... + n/(n+1)
 function sum_series_2a($n) {
     // T = 1/2 + 2/3 + ... + n/(n+1)
     $k = 1;
@@ -44,6 +33,7 @@ function sum_series_2a($n) {
     return $T;
 }
 
+// Bài 2b: Tính tổng chuỗi T = 1/2 + 1/4 + 1/6 + ... với điều kiện epsilon
 function sum_series_2b_eps($eps = 0.0001) {
     // T = 1/2 + 1/4 + 1/6 + ... + 1/(n+2) với 1/(n+2) > eps
     // dừng khi term <= eps
@@ -58,6 +48,7 @@ function sum_series_2b_eps($eps = 0.0001) {
     return $T;
 }
 
+// Bài 6: Tính giai thừa của số n
 function factorial($n) {
     if ($n < 0) return null;
     $res = 1;
@@ -65,6 +56,7 @@ function factorial($n) {
     return $res;
 }
 
+// Bài 5: Kiểm tra số hoàn hảo
 function is_perfect($n) {
     if ($n <= 1) return false;
     $sum = 1;
@@ -77,6 +69,7 @@ function is_perfect($n) {
     return $sum == $n;
 }
 
+// Bài 7: Tìm các ước số của một số nguyên
 function divisors($n) {
     $ds = [];
     for ($i = 1; $i * $i <= $n; $i++) {
@@ -89,6 +82,7 @@ function divisors($n) {
     return $ds;
 }
 
+// Bài 9: Chuyển đổi giây thành định dạng hh:mm:ss
 function format_hms($seconds) {
     $seconds = max(0, (int)$seconds);
     $h = floor($seconds / 3600);
@@ -97,7 +91,8 @@ function format_hms($seconds) {
     return sprintf("%02d:%02d:%02d", $h, $m, $s);
 }
 
-/* ========= Classes for Bài 10 ========= */
+/* ========= Bài 10: Classes Person và SinhVien ========= */
+// Bài 10: Class cơ sở Person
 class Person {
     public $hoten;
     public $ngaysinh;
@@ -108,6 +103,8 @@ class Person {
         $this->quequan = $quequan;
     }
 }
+
+// Bài 10: Class SinhVien kế thừa từ Person
 class SinhVien extends Person {
     public $lop;
     public function __construct($hoten, $ngaysinh, $quequan, $lop) {
@@ -116,7 +113,7 @@ class SinhVien extends Person {
     }
 }
 
-/* ========= Bài 4: lưu chuỗi số trong session ========= */
+/* ========= Bài 4: Xử lý session lưu chuỗi số ========= */
 if (!isset($_SESSION['bai4'])) $_SESSION['bai4'] = [];
 if (isset($_POST['bai4_add'])) {
     $val = (int)($_POST['bai4_value'] ?? 0);
@@ -131,24 +128,28 @@ if (isset($_POST['bai4_reset'])) {
     unset($_SESSION['bai4_end']);
 }
 
-/* ========= Submit handlers ========= */
+/* ========= Submit Handlers - Xử lý kết quả các bài tập ========= */
 $results = [];
 
+// Bài 1: Xử lý submit tổng số nguyên tố
 if (isset($_POST['bai1'])) {
     $results['bai1'] = sum_primes_1_100();
 }
 
+// Bài 2a: Xử lý submit tính tổng chuỗi với n cho trước
 if (isset($_POST['bai2a'])) {
     $n = max(1, (int)($_POST['n2a'] ?? 1));
     $results['bai2a'] = sum_series_2a($n);
 }
 
+// Bài 2b: Xử lý submit tính tổng chuỗi với epsilon
 if (isset($_POST['bai2b'])) {
     $eps = floatval($_POST['eps2b'] ?? 0.0001);
     if ($eps <= 0) $eps = 0.0001;
     $results['bai2b'] = sum_series_2b_eps($eps);
 }
 
+// Bài 3: Xử lý submit biểu thức (placeholder)
 if (isset($_POST['bai3'])) {
     // TODO: Cập nhật biểu thức đúng theo ảnh đề (Bài 3).
     // TẠM THỜI: ví dụ placeholder: S = 1 + 1/2 + ... + 1/n
@@ -161,22 +162,25 @@ if (isset($_POST['bai3'])) {
     ];
 }
 
+// Bài 5: Xử lý submit kiểm tra số hoàn hảo
 if (isset($_POST['bai5'])) {
     $n = max(1, (int)($_POST['n5'] ?? 1));
     $results['bai5'] = is_perfect($n);
 }
 
+// Bài 6: Xử lý submit tính giai thừa
 if (isset($_POST['bai6'])) {
     $n = max(0, (int)($_POST['n6'] ?? 0));
     $results['bai6'] = factorial($n);
 }
 
+// Bài 7: Xử lý submit tìm ước số
 if (isset($_POST['bai7'])) {
     $n = max(1, (int)($_POST['n7'] ?? 1));
     $results['bai7'] = divisors($n);
 }
 
-// Tách xử lý bài 8 ra file riêng
+// Bài 8: Xử lý submit đếm số âm/dương (sử dụng file bai8.php)
 include_once __DIR__ . '/bai8.php';
 if (isset($_POST['bai8'])) {
   $arrstr = trim($_POST['arr8'] ?? '');
@@ -191,11 +195,13 @@ if (isset($_POST['bai8'])) {
   $results['bai8'] = bai8_handle(implode(',', $numbers));
 }
 
+// Bài 9: Xử lý submit chuyển đổi giây thành hh:mm:ss
 if (isset($_POST['bai9'])) {
     $sec = max(0, (int)($_POST['sec9'] ?? 0));
     $results['bai9'] = format_hms($sec);
 }
 
+// Bài 10: Xử lý submit tạo đối tượng SinhVien
 if (isset($_POST['bai10'])) {
     $sv = new SinhVien(
         $_POST['hoten10'] ?? '',
@@ -206,7 +212,7 @@ if (isset($_POST['bai10'])) {
     $results['bai10'] = $sv;
 }
 
-// Xác định bài vừa submit
+/* ========= Navigation Logic - Xác định bài vừa submit ========= */
 $lastBai = '';
 foreach ( [
   'bai1'=>'b1','bai2a'=>'b2','bai2b'=>'b2','bai3'=>'b3','bai4_add'=>'b4','bai4_reset'=>'b4','bai5'=>'b5','bai6'=>'b6','bai7'=>'b7','bai8'=>'b8','bai9'=>'b9','bai10'=>'b10'
@@ -226,6 +232,13 @@ foreach ( [
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="header-banner" style="background:linear-gradient(90deg,#2196f3 60%,#fff 100%);color:#fff;padding:32px 0 18px 0;text-align:center;box-shadow:0 2px 12px rgba(33,150,243,0.08);">
+    <div style="font-size:38px;font-weight:900;letter-spacing:1px;line-height:1.1;">
+      <span style="vertical-align:middle;">🚀</span> HỌC LẬP TRÌNH WEB HIỆN ĐẠI <span style="vertical-align:middle;">✨</span>
+    </div>
+    <div style="font-size:18px;font-weight:400;margin-top:8px;opacity:.95;">Khám phá HTML, CSS, PHP, JavaScript và nhiều công nghệ web khác!</div>
+  </div>
+  
 <!-- Navbar ngang ở header -->
 <header class="navbar">
   <div class="navbar-top">
@@ -239,7 +252,7 @@ foreach ( [
   </div>
   <nav class="navbar-menu">
     <ul>
-      <li><a href="#home">Trang chủ</a></li>
+      <li><a href="index.php">Trang chủ</a></li>
       <li class="dropdown">
         <a href="#bai">Bài tập ▼</a>
         <ul class="dropdown-content">
@@ -253,21 +266,13 @@ foreach ( [
           <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
           <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
           <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
-          <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a>
+          <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a></li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a href="#tai-lieu">Tài liệu ▼</a>
-        <ul class="dropdown-content">
-          <li><a href="hoc-php.html">Học PHP</a></li>
-          <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
-          <li><a href="gioi-thieu-js.html">Giới thiệu JS</a></li>
-          <li><a href="gioi-thieu-welscholl.html">Giới thiệu Welscholl</a></li>
-          <li><a href="#lythuyet">Lý thuyết</a></li>
-          <li><a href="#huongdan">Hướng dẫn</a></li>
-        </ul>
-      </li>
-      <li><a href="#lienhe">Liên hệ</a></li>
+      <li><a href="gioi-thieu-js.html">JavaScript</a></li>
+      <li><a href="gioi-thieu-welscholl.html">W3Schools</a></li>
+      <li><a href="hoc-php.html">Học PHP</a></li>
+      <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
       <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
     </ul>
   </nav>
@@ -493,7 +498,6 @@ foreach ( [
     </section>
 
     <hr class="soft">
-    <footer>Cảm ơn và mong cô góp ý cho bài làm <span class="code">&lt;thank you&gt;</span>.</footer>
   </main>
 </div>
 <script>
@@ -572,6 +576,25 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+function toggleAside() {
+  const aside = document.querySelector('.aside');
+  const icon = document.getElementById('aside-icon');
+  if (aside) {
+    // Desktop: dùng class 'hidden', Mobile: dùng class 'show'
+    if (window.innerWidth <= 900) {
+      aside.classList.toggle('show');
+    } else {
+      aside.classList.toggle('hidden');
+    }
+    
+    if (icon) {
+      const isHidden = aside.classList.contains('hidden') || !aside.classList.contains('show');
+      icon.textContent = (window.innerWidth <= 900) ? 
+        (aside.classList.contains('show') ? '✕' : '☰') :
+        (aside.classList.contains('hidden') ? '☰' : '✕');
+    }
+  }
+}
 </script>
 </body>
 </html>

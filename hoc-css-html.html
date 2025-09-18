@@ -2,19 +2,124 @@
 <html lang="vi">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Học CSS & HTML</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        // ...copy toàn bộ script từ index.php...
-    </script>
+    <style>
+        .header-banner {
+            background: linear-gradient(90deg, #2196f3 60%, #fff 100%);
+            color: #fff;
+            padding: 36px 0 22px 0;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(33, 150, 243, 0.13);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-banner .banner-title {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+            color: #fff;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            -webkit-text-fill-color: unset;
+            text-shadow: none;
+            animation: none;
+            display: inline-block;
+        }
+
+        .header-banner .banner-icon {
+            font-size: 48px;
+            vertical-align: middle;
+            animation: none;
+            filter: none;
+        }
+
+        .header-banner .banner-desc {
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 12px;
+            opacity: .97;
+            color: #fff;
+            text-shadow: none;
+        }
+
+        .footer-banner {
+            background: linear-gradient(90deg, #2196f3 60%, #ffd580 100%);
+            color: #fff;
+            padding: 28px 0 18px 0;
+            text-align: center;
+            box-shadow: 0 -4px 24px rgba(33, 150, 243, 0.13);
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-banner .footer-title {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .footer-banner .footer-icon {
+            font-size: 32px;
+            vertical-align: middle;
+        }
+
+        .footer-banner .footer-desc {
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 10px;
+            opacity: .97;
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .header-banner .banner-title {
+                font-size: 28px;
+            }
+
+            .header-banner .banner-desc {
+                font-size: 15px;
+            }
+
+            .header-banner .banner-icon {
+                font-size: 32px;
+            }
+
+            .footer-banner .footer-title {
+                font-size: 18px;
+            }
+
+            .footer-banner .footer-desc {
+                font-size: 13px;
+            }
+
+            .footer-banner .footer-icon {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body data-knowledge>
-    <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
-        <span id="aside-icon">☰</span>
-    </button>
+    <div class="header-banner"
+        style="background:linear-gradient(90deg,#2196f3 60%,#fff 100%);color:#fff;padding:32px 0 18px 0;text-align:center;box-shadow:0 2px 12px rgba(33,150,243,0.08);">
+        <div style="font-size:38px;font-weight:900;letter-spacing:1px;line-height:1.1;">
+            <span style="vertical-align:middle;">🚀</span> HỌC LẬP TRÌNH WEB HIỆN ĐẠI <span
+                style="vertical-align:middle;">✨</span>
+        </div>
+        <div style="font-size:18px;font-weight:400;margin-top:8px;opacity:.95;">Khám phá HTML, CSS, PHP, JavaScript và
+            nhiều công nghệ web khác!</div>
+    </div>
+
     <header class="navbar">
         <div class="navbar-top">
             <div class="student-info">
@@ -41,37 +146,32 @@
                         <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
                         <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
                         <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
-                        <li><a href="#b11">Bài 11 – Form</a></li>
+                        <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#tai-lieu">Tài liệu ▼</a>
-                    <ul class="dropdown-content">
-                        <li><a href="hoc-php.html">Học PHP</a></li>
-                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
-                        <li><a href="#lythuyet">Lý thuyết</a></li>
-                        <li><a href="#huongdan">Hướng dẫn</a></li>
-                    </ul>
-                </li>
-                <li><a href="#lienhe">Liên hệ</a></li>
+                <li><a href="gioi-thieu-js.html">JavaScript</a></li>
+                <li><a href="gioi-thieu-welscholl.html">W3Schools</a></li>
+                <li><a href="hoc-php.html">Học PHP</a></li>
+                <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
             </ul>
         </nav>
     </header>
     <div class="container">
         <aside class="aside">
-            <div class="brand">Thực hành <span>HTML/CSS/PHP</span></div>
+            <div class="brand" title="Học CSS & HTML">
+                <span>CSS</span> & HTML
+                <span class="brand-emoji" style="font-size:22px;">🎨</span>
+            </div>
             <div class="nav">
-                <a href="#b1">Bài 1 – Tổng số nguyên tố</a>
-                <a href="#b2">Bài 2 – Chuỗi & epsilon</a>
-                <a href="#b3">Bài 3 – Biểu thức (ảnh)</a>
-                <a href="#b4">Bài 4 – Nhập đến 0</a>
-                <a href="#b5">Bài 5 – Số hoàn hảo</a>
-                <a href="#b6">Bài 6 – Giai thừa</a>
-                <a href="#b7">Bài 7 – Ước số</a>
-                <a href="#b8">Bài 8 – Đếm âm/dương</a>
-                <a href="#b9">Bài 9 – hh:mm:ss</a>
-                <a href="#b10">Bài 10 – PERSON/SINHVIEN</a>
-                <a href="#b11">Bài 11 – Form</a>
+                <a href="#html-intro">HTML là gì?</a>
+                <a href="#html-structure">Cấu trúc HTML</a>
+                <a href="#css-intro">CSS là gì?</a>
+                <a href="#css-selectors">CSS Selectors</a>
+                <a href="#css-layout">Layout & Flexbox</a>
+                <a href="#css-responsive">Responsive Design</a>
+                <a href="#css-animation">Animation & Effects</a>
+                <a href="#css-frameworks">CSS Frameworks</a>
             </div>
         </aside>
         <!-- Phần main nội dung học CSS & HTML -->
@@ -137,6 +237,35 @@
             </footer>
         </main>
     </div>
+    <footer class="footer-banner">
+        <div class="footer-content">
+            <span class="footer-icon">🌐</span>
+            <span class="footer-title">HỌC LẬP TRÌNH – KẾT NỐI TƯƠNG LAI</span>
+            <span class="footer-icon">🚀</span>
+            <div class="footer-desc">Cảm ơn bạn đã ghé thăm website. Chúc bạn học tập hiệu quả và thành công!</div>
+        </div>
+    </footer>
+    <script>
+        function toggleAside() {
+            const aside = document.querySelector('.aside');
+            const icon = document.getElementById('aside-icon');
+            if (aside) {
+                // Desktop: dùng class 'hidden', Mobile: dùng class 'show'
+                if (window.innerWidth <= 900) {
+                    aside.classList.toggle('show');
+                } else {
+                    aside.classList.toggle('hidden');
+                }
+
+                if (icon) {
+                    const isHidden = aside.classList.contains('hidden') || !aside.classList.contains('show');
+                    icon.textContent = (window.innerWidth <= 900) ?
+                        (aside.classList.contains('show') ? '✕' : '☰') :
+                        (aside.classList.contains('hidden') ? '☰' : '✕');
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

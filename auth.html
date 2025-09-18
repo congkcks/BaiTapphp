@@ -62,6 +62,30 @@
             margin-right: auto;
             display: block;
         }
+
+        .header-banner {
+            background: linear-gradient(90deg, #2196f3 60%, #fff 100%);
+            color: #fff;
+            padding: 32px 0 18px 0;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(33, 150, 243, 0.08);
+        }
+
+        .header-banner h1 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .header-banner p {
+            font-size: 18px;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: .95;
+            margin-bottom: 0;
+        }
     </style>
     <script>
         function showTab(tab) {
@@ -82,32 +106,41 @@
 </head>
 
 <body data-knowledge>
-    <header class="navbar">
-        <div class="navbar-top">
-            <div class="student-info">
-                <span><b>Vũ Văn Hà Công</b></span> | Khoa CNTT | Lớp CNTT4-K63
-            </div>
+    <div class="header-banner"
+        style="background:linear-gradient(90deg,#2196f3 60%,#fff 100%);color:#fff;padding:32px 0 18px 0;text-align:center;box-shadow:0 2px 12px rgba(33,150,243,0.08);">
+        <div style="font-size:38px;font-weight:900;letter-spacing:1px;line-height:1.1;">
+            <span style="vertical-align:middle;">🚀</span> HỌC LẬP TRÌNH WEB HIỆN ĐẠI <span
+                style="vertical-align:middle;">✨</span>
         </div>
-        <nav class="navbar-menu">
-            <ul>
-                <li><a href="index.php">Trang chủ</a></li>
-                <li class="dropdown">
-                    <a href="#tai-lieu">Tài liệu ▼</a>
-                    <ul class="dropdown-content">
-                        <li><a href="hoc-php.html">Học PHP</a></li>
-                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
-                        <li><a href="gioi-thieu-js.html">Giới thiệu JS</a></li>
-                        <li><a href="gioi-thieu-welscholl.html">Giới thiệu Welscholl</a></li>
-                        <li><a href="https://www.w3schools.com/" target="_blank">Học W3Schools</a></li>
-                        <li><a href="https://www.w3schools.com/js/default.asp" target="_blank">Học JavaScript trực
-                                tiếp</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
-            </ul>
-        </nav>
-    </header>
+        <div style="font-size:18px;font-weight:400;margin-top:8px;opacity:.95;">Khám phá HTML, CSS, PHP, JavaScript và
+            nhiều công nghệ web khác!</div>
+    </div>
+    <nav class="navbar-menu">
+        <ul>
+            <li><a href="index.php">Trang chủ</a></li>
+            <li class="dropdown">
+                <a href="#bai">Bài tập ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="#b1">Bài 1 – Tổng số nguyên tố</a></li>
+                    <li><a href="#b2">Bài 2 – Chuỗi & epsilon</a></li>
+                    <li><a href="#b3">Bài 3 – Biểu thức (ảnh)</a></li>
+                    <li><a href="#b4">Bài 4 – Nhập đến 0</a></li>
+                    <li><a href="#b5">Bài 5 – Số hoàn hảo</a></li>
+                    <li><a href="#b6">Bài 6 – Giai thừa</a></li>
+                    <li><a href="#b7">Bài 7 – Ước số</a></li>
+                    <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
+                    <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
+                    <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
+                    <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a></li>
+                </ul>
+            </li>
+            <li><a href="gioi-thieu-js.html">JavaScript</a></li>
+            <li><a href="gioi-thieu-welscholl.html">W3Schools</a></li>
+            <li><a href="hoc-php.html">Học PHP</a></li>
+            <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+            <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
+        </ul>
+    </nav>
     <main>
         <h1>Đăng nhập / Đăng ký</h1>
         <div class="card" style="max-width:420px;margin:auto;">
