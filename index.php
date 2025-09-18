@@ -352,7 +352,7 @@ foreach ( [
             <input type="number" name="n3" min="1" value="5" required>
           </div>
           <div style="flex-basis: 100%;">
-            <div class="small">* Hiện đang dùng <span class="code">S = 1 + 1/2 + ... + 1/n</span> làm placeholder. Cập nhật công thức theo ảnh khi có.</div>
+            <div class="small">* Hiện đang dùng <span class="code">S = 1 + 1/2 + ... + 1/n</span> okok</div>
           </div>
           <div><button name="bai3">Tính</button></div>
         </form>
