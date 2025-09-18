@@ -6,47 +6,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bài tập HTML/CSS/PHP – thực hành cơ bản</title>
-<style>
-/* ...existing code... */
-/* Nút ẩn/hiện menu bên trái */
-.aside-toggle {
-  position: fixed; left: 12px; top: 16px; z-index: 200;
-  background: var(--accent); color: #fff; border: none; border-radius: 8px;
-  padding: 8px 12px; font-size: 22px; cursor: pointer; box-shadow: 0 2px 8px rgba(56,189,248,0.12);
-  display: none;
-}
-@media (max-width: 900px) {
-  .container { grid-template-columns: 1fr; }
-  .aside { position: fixed; left: 0; top: 0; height: 100vh; width: 240px; transform: translateX(-100%); transition: transform 0.3s; z-index: 150; }
-  .aside.show { transform: translateX(0); }
-  .aside-toggle { display: block; }
-  main { padding-left: 0 !important; }
-  .navbar-top { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 12px 0 12px; }
-  .search-bar input[type="text"] { min-width: 120px; }
-  .navbar-menu ul { flex-direction: column; }
-  .navbar-menu ul li a { padding: 12px 16px; }
-  .navbar-menu .dropdown-content { position: static; min-width: unset; box-shadow: none; border-radius: 0; }
-}
-</style>
-<script>
-function toggleAside() {
-  var aside = document.querySelector('.aside');
-  aside.classList.toggle('show');
-  var icon = document.getElementById('aside-icon');
-  icon.textContent = aside.classList.contains('show') ? '✖' : '☰';
-}
-// Tự động ẩn menu khi click ra ngoài trên mobile
-document.addEventListener('click', function(e) {
-  var aside = document.querySelector('.aside');
-  var toggle = document.querySelector('.aside-toggle');
-  if (window.innerWidth <= 900 && aside.classList.contains('show')) {
-    if (!aside.contains(e.target) && !toggle.contains(e.target)) {
-      aside.classList.remove('show');
-      document.getElementById('aside-icon').textContent = '☰';
-    }
-  }
-});
-</script>
+<link rel="stylesheet" href="style.css">
+<!-- Giao diện hiện đại – tối giản: xanh da trời, trắng, xám, đen -->
 </head>
 <body>
   <button class="aside-toggle" aria-label="Ẩn/hiện menu" onclick="toggleAside()">
@@ -219,7 +180,15 @@ if (isset($_POST['bai7'])) {
 include_once __DIR__ . '/bai8.php';
 if (isset($_POST['bai8'])) {
   $arrstr = trim($_POST['arr8'] ?? '');
-  $results['bai8'] = bai8_handle($arrstr);
+  // Lọc tất cả số nguyên từ chuỗi nhập vào, lấy tối đa 10 số đầu tiên
+  preg_match_all('/-?\d+/', $arrstr, $matches);
+  $numbers = array_map('intval', $matches[0]);
+  $numbers = array_slice($numbers, 0, 10);
+  // Nếu không nhập hoặc không đủ 10 số thì random cho đủ
+  while (count($numbers) < 10) {
+    $numbers[] = rand(-20, 20);
+  }
+  $results['bai8'] = bai8_handle(implode(',', $numbers));
 }
 
 if (isset($_POST['bai9'])) {
@@ -237,14 +206,15 @@ if (isset($_POST['bai10'])) {
     $results['bai10'] = $sv;
 }
 
-if (isset($_POST['bai11'])) {
-    // Demo nhận form bài 11
-    $results['bai11'] = [
-        'name' => $_POST['f11_name'] ?? '',
-        'email' => $_POST['f11_email'] ?? '',
-        'phone' => $_POST['f11_phone'] ?? '',
-        'note' => $_POST['f11_note'] ?? ''
-    ];
+// Xác định bài vừa submit
+$lastBai = '';
+foreach ( [
+  'bai1'=>'b1','bai2a'=>'b2','bai2b'=>'b2','bai3'=>'b3','bai4_add'=>'b4','bai4_reset'=>'b4','bai5'=>'b5','bai6'=>'b6','bai7'=>'b7','bai8'=>'b8','bai9'=>'b9','bai10'=>'b10'
+] as $postName => $sectionId) {
+  if (isset($_POST[$postName])) {
+    $lastBai = $sectionId;
+    break;
+  }
 }
 ?>
 <!doctype html>
@@ -253,138 +223,7 @@ if (isset($_POST['bai11'])) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bài tập HTML/CSS/PHP – thực hành cơ bản</title>
-<style>
-/* Màu sắc tươi sáng, hiện đại */
-:root {
-  --bg: #f3f8ff;      /* nền sáng */
-  --panel: #e0e7ef;   /* panel sáng */
-  --card: #ffffff;    /* card trắng */
-  --accent: #38bdf8;  /* xanh dương sáng */
-  --accent2: #fbbf24; /* vàng nhấn */
-  --muted: #64748b;   /* xám nhạt */
-  --text: #1e293b;    /* chữ đậm */
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(135deg, #e0e7ef 0%, #f3f8ff 40%, #e0e7ef 100%);
-  color: var(--text);
-}
-/* Layout và panel */
-.container { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-.aside {
-  background: linear-gradient(180deg, #fbbf24 0%, var(--panel) 100%);
-  border-right: 1px solid #cbd5e1;
-  padding: 24px 16px; position: sticky; top: 0; height: 100vh; overflow:auto;
-}
-.brand { font-size: 20px; font-weight: 700; letter-spacing:.3px; margin-bottom: 16px; color: var(--accent2); }
-.brand span { color: var(--accent); }
-.nav a {
-  display:block; padding:10px 12px; margin:6px 0; border-radius:10px;
-  color: var(--text); text-decoration:none; background: #e0e7ef; border:1px solid #cbd5e1;
-  font-weight: 500;
-}
-.nav a:hover { border-color: var(--accent); background: var(--accent); color: #fff; box-shadow: 0 0 0 2px #38bdf8 inset; }
-main { padding: 32px 24px; }
-h1 { margin: 0 0 12px; font-size: 28px; color: var(--accent); }
-.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 16px; }
-.card {
-  background: linear-gradient(120deg, #f3f8ff 60%, #e0e7ef 100%);
-  border: 1px solid #cbd5e1; border-radius: 18px; margin-bottom: 18px; overflow: hidden;
-  box-shadow: 0 2px 12px rgba(56,189,248,0.08);
-}
-.card header { padding: 16px 18px; font-weight: 600; border-bottom:1px solid #cbd5e1; background: var(--accent2); color: #fff; }
-.card .body { padding: 18px; }
-.row { display:flex; gap:14px; flex-wrap: wrap; }
-.row > * { flex: 1 1 240px; }
-input, select, textarea, button {
-  width: 100%; padding: 11px 13px; border-radius: 10px; border:1px solid #cbd5e1;
-  background:#f3f8ff; color:var(--text); font-size: 15px;
-}
-button {
-  background: linear-gradient(135deg, #38bdf8, #fbbf24); color:#1e293b; font-weight:700; cursor:pointer;
-  border:none; transition: filter 0.2s;
-}
-button:hover { filter: brightness(1.08); }
-.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:#2563eb; }
-.kq { margin-top:10px; padding:10px; border:1px dashed #38bdf8; border-radius:10px; background:#e0e7ef; color:var(--text); }
-.small { font-size: 12px; color: var(--muted); }
-hr.soft { border:none; height:1px; background: linear-gradient(90deg,#e0e7ef, #38bdf8, #e0e7ef); margin: 20px 0; }
-footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px; }
-@media (max-width: 900px) {
-  .container { grid-template-columns: 1fr; }
-  .aside { position: static; height: auto; }
-}
-<style>
-/* Navbar ngang và thông tin sinh viên, tìm kiếm */
-.navbar {
-  width: 100%; background: var(--panel); border-bottom: 1px solid #1e293b;
-  padding: 0; margin: 0; position: sticky; top: 0; z-index: 100;
-}
-.navbar-top {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 24px 0 24px;
-  background: var(--panel);
-}
-.student-info {
-  font-size: 16px; color: var(--accent2); font-weight: 600;
-  letter-spacing: .5px;
-}
-.search-bar {
-  display: flex; align-items: center; gap: 6px;
-}
-.search-bar input[type="text"] {
-  padding: 7px 12px; border-radius: 8px; border: 1px solid #cbd5e1;
-  background: #fff; color: var(--text); font-size: 15px; min-width: 220px;
-}
-.search-bar button {
-  padding: 7px 14px; border-radius: 8px; border: none;
-  background: var(--accent); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer;
-  transition: background 0.2s;
-}
-.search-bar button:hover {
-  background: var(--accent2); color: var(--text);
-}
-.navbar-menu ul {
-  list-style: none; margin: 0; padding: 0; display: flex; align-items: center;
-}
-.navbar-menu ul li {
-  position: relative; margin: 0; padding: 0;
-}
-.navbar-menu ul li a {
-  display: block; padding: 14px 22px; color: var(--text); text-decoration: none;
-  font-weight: 500; font-size: 16px; transition: background 0.2s;
-}
-.navbar-menu ul li a:hover {
-  background: var(--accent); color: #001018;
-}
-.navbar-menu .dropdown:hover > a {
-  background: var(--accent); color: #001018;
-}
-.navbar-menu .dropdown-content {
-  display: none; position: absolute; left: 0; top: 100%; min-width: 220px;
-  background: var(--card); border: 1px solid #1e293b; border-radius: 0 0 12px 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  z-index: 10;
-}
-.navbar-menu .dropdown:hover .dropdown-content {
-  display: block;
-}
-.navbar-menu .dropdown-content li a {
-  padding: 12px 18px; font-size: 15px;
-}
-.navbar-menu .dropdown-content li a:hover {
-  background: var(--accent); color: #001018;
-}
-@media (max-width: 900px) {
-  .navbar-top { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px 12px 0 12px; }
-  .search-bar input[type="text"] { min-width: 120px; }
-  .navbar-menu ul { flex-direction: column; }
-  .navbar-menu ul li a { padding: 12px 16px; }
-  .navbar-menu .dropdown-content { position: static; min-width: unset; box-shadow: none; border-radius: 0; }
-}
-</style>
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <!-- Navbar ngang ở header -->
@@ -414,7 +253,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
           <li><a href="#b8">Bài 8 – Đếm âm/dương</a></li>
           <li><a href="#b9">Bài 9 – hh:mm:ss</a></li>
           <li><a href="#b10">Bài 10 – PERSON/SINHVIEN</a></li>
-          <li><a href="#b11">Bài 11 – Form</a></li>
+          <li><a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a>
         </ul>
       </li>
       <li class="dropdown">
@@ -422,17 +261,23 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
         <ul class="dropdown-content">
           <li><a href="hoc-php.html">Học PHP</a></li>
           <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+          <li><a href="gioi-thieu-js.html">Giới thiệu JS</a></li>
+          <li><a href="gioi-thieu-welscholl.html">Giới thiệu Welscholl</a></li>
           <li><a href="#lythuyet">Lý thuyết</a></li>
           <li><a href="#huongdan">Hướng dẫn</a></li>
         </ul>
       </li>
       <li><a href="#lienhe">Liên hệ</a></li>
+      <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
     </ul>
   </nav>
 </header>
 <div class="container">
   <aside class="aside">
-    <div class="brand">Thực hành <span>HTML/CSS/PHP</span></div>
+    <div class="brand" title="Thực hành HTML/CSS/PHP">
+      <span>Thực hành</span> HTML/CSS/PHP
+      <span class="brand-emoji" style="font-size:22px;">✨</span>
+    </div>
     <div class="nav">
       <a href="#b1">Bài 1 – Tổng số nguyên tố</a>
       <a href="#b2">Bài 2 – Chuỗi & epsilon</a>
@@ -444,16 +289,14 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
       <a href="#b8">Bài 8 – Đếm âm/dương</a>
       <a href="#b9">Bài 9 – hh:mm:ss</a>
       <a href="#b10">Bài 10 – PERSON/SINHVIEN</a>
-      <a href="#b11">Bài 11 – Form</a>
+      <a href="#b11">Bài 11 – Đăng nhập/Đăng ký</a>
     </div>
   </aside>
 
   <main>
     <h1>Thực hành cơ bản với HTML, CSS, PHP</h1>
     <div class="subtitle">Giao diện gọn nhẹ, mỗi bài là một thẻ thao tác riêng. (Bạn có thể chỉnh màu, font cho khớp mẫu PDF)</div>
-
-    <!-- Bài 1 -->
-    <section id="b1" class="card">
+    <section id="b1" class="card" style="display:none">
       <header>Bài 1 – Tính tổng các số nguyên tố từ 1 đến 100</header>
       <div class="body">
         <form method="post" class="row">
@@ -466,7 +309,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 2 -->
-    <section id="b2" class="card">
+    <section id="b2" class="card" style="display:none">
       <header>Bài 2 – Vòng lặp không xác định</header>
       <div class="body">
         <div class="row">
@@ -495,7 +338,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 3 -->
-    <section id="b3" class="card">
+    <section id="b3" class="card" style="display:none">
       <header>Bài 3 – Tính giá trị biểu thức (biểu thức nằm trong ảnh đề)</header>
       <div class="body">
         <form method="post" class="row">
@@ -518,29 +361,28 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 4 -->
-    <section id="b4" class="card">
+    <section id="b4" class="card" style="display:none">
       <header>Bài 4 – Nhập số cho đến khi nhập 0 thì dừng (dùng session)</header>
       <div class="body">
-        <form method="post" class="row">
+        <form method="post" class="row" id="bai4-form">
           <div>
             <label class="small">Nhập một số (0 để dừng)</label>
-            <input type="number" name="bai4_value" required>
+            <input type="number" name="bai4_value" id="bai4_value" required autocomplete="off">
           </div>
           <div style="max-width:200px"><button name="bai4_add">Thêm</button></div>
-          <div style="max-width:200px"><button name="bai4_reset" type="submit">Reset</button></div>
         </form>
         <div class="kq">
           <div class="small">Dãy hiện tại:</div>
           <div><b><?= htmlspecialchars(implode(', ', $_SESSION['bai4'])) ?></b></div>
           <?php if (!empty($_SESSION['bai4_end'])): ?>
-            <div class="small">Đã nhập 0: dừng nhận thêm. Nhấn Reset để bắt đầu lại.</div>
+            <div class="small">Đã nhập 0: dừng nhận thêm. Nhập số mới để bắt đầu lại.</div>
           <?php endif; ?>
         </div>
       </div>
     </section>
 
     <!-- Bài 5 -->
-    <section id="b5" class="card">
+    <section id="b5" class="card" style="display:none">
       <header>Bài 5 – Kiểm tra số hoàn hảo</header>
       <div class="body">
         <form method="post" class="row">
@@ -556,7 +398,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 6 -->
-    <section id="b6" class="card">
+    <section id="b6" class="card" style="display:none">
       <header>Bài 6 – Tính n!</header>
       <div class="body">
         <form method="post" class="row">
@@ -570,7 +412,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 7 -->
-    <section id="b7" class="card">
+    <section id="b7" class="card" style="display:none">
       <header>Bài 7 – Liệt kê ước số</header>
       <div class="body">
         <form method="post" class="row">
@@ -584,13 +426,14 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 8 -->
-    <section id="b8" class="card">
+    <section id="b8" class="card" style="display:none">
       <header>Bài 8 – Mảng 10 phần tử: đếm âm/dương</header>
       <div class="body">
-        <form method="post" class="row">
+        <form method="post" class="row" id="bai8-form">
           <div style="flex-basis:100%">
             <label class="small">Nhập 10 số, cách nhau bởi dấu phẩy (để trống sẽ random):</label>
-            <input type="text" name="arr8" placeholder="-2,0,3,..." value="">
+            <input type="text" name="arr8" id="arr8" placeholder="-2,0,3,..." value="">
+            <div id="bai8-err" style="color:#d32f2f;font-size:14px;display:none;margin-top:4px"></div>
           </div>
           <div style="max-width:200px"><button name="bai8">Đếm</button></div>
         </form>
@@ -604,7 +447,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 9 -->
-    <section id="b9" class="card">
+    <section id="b9" class="card" style="display:none">
       <header>Bài 9 – Đổi giây sang hh:mm:ss</header>
       <div class="body">
         <form method="post" class="row">
@@ -618,7 +461,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 10 -->
-    <section id="b10" class="card">
+    <section id="b10" class="card" style="display:none">
       <header>Bài 10 – Lớp PERSON / SINHVIEN (in thông tin cá nhân)</header>
       <div class="body">
         <form method="post" class="row">
@@ -641,29 +484,94 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 14px
     </section>
 
     <!-- Bài 11 -->
-    <section id="b11" class="card">
-      <header>Bài 11 – Form giao diện (dựng theo tinh thần mẫu ảnh)</header>
+    <section id="b11" class="card" style="display:none">
+      <header>Bài 11 – Đăng nhập/Đăng ký</header>
       <div class="body">
-        <form method="post" class="row">
-          <div><input name="f11_name" placeholder="Họ và tên" required></div>
-          <div><input type="email" name="f11_email" placeholder="Email" required></div>
-          <div><input name="f11_phone" placeholder="Số điện thoại"></div>
-          <div style="flex-basis:100%"><textarea name="f11_note" rows="4" placeholder="Ghi chú"></textarea></div>
-          <div style="max-width:200px"><button name="bai11">Gửi</button></div>
-        </form>
-        <?php if (isset($results['bai11'])): ?>
-          <div class="kq">
-            <div>Đã nhận form:</div>
-            <div class="code"><?= htmlspecialchars(json_encode($results['bai11'], JSON_UNESCAPED_UNICODE)) ?></div>
-          </div>
-        <?php endif; ?>
-        <div class="small">* Khi có ảnh mẫu chính xác, bạn chỉ cần chỉnh lại nhãn/input cho trùng 100%.</div>
+        <p>Thực hiện chức năng đăng nhập và đăng ký tài khoản.</p>
+        <a href="auth.html" style="display:inline-block;padding:10px 18px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Chuyển đến trang Đăng nhập/Đăng ký</a>
       </div>
     </section>
 
     <hr class="soft">
-    <footer>Made with ❤️ — có thể chỉnh màu/spacing nhanh trong phần <span class="code">&lt;style&gt;</span>.</footer>
+    <footer>Cảm ơn và mong cô góp ý cho bài làm <span class="code">&lt;thank you&gt;</span>.</footer>
   </main>
 </div>
+<script>
+function showSection(id) {
+  document.querySelectorAll('main .card').forEach(function(sec) {
+    sec.style.display = 'none';
+  });
+  var el = document.getElementById(id);
+  if (el) el.style.display = '';
+}
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#b')) {
+        e.preventDefault();
+        showSection(href.substring(1));
+      }
+    });
+  });
+  // Hiển thị đúng bài vừa submit
+  var showId = '<?php echo $lastBai ?: "b1"; ?>';
+  showSection(showId);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.navbar-menu .dropdown-content a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#b')) {
+        e.preventDefault();
+        showSection(href.substring(1));
+      }
+    });
+  });
+});
+window.addEventListener('DOMContentLoaded', function() {
+  // Bài 4: reset dãy nếu nhập 0
+  var bai4Input = document.getElementById('bai4_value');
+  if (bai4Input) {
+    bai4Input.addEventListener('input', function() {
+      if (bai4Input.value === '0') {
+        // Gửi form reset qua AJAX hoặc chuyển hướng với tham số reset
+        var f = document.createElement('form');
+        f.method = 'post';
+        f.action = '';
+        var inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'bai4_reset';
+        inp.value = '1';
+        f.appendChild(inp);
+        document.body.appendChild(f);
+        f.submit();
+      }
+    });
+  }
+});
+window.addEventListener('DOMContentLoaded', function() {
+  // Bài 8: kiểm tra input bằng regex
+  var bai8Form = document.getElementById('bai8-form');
+  var arr8Input = document.getElementById('arr8');
+  var bai8Err = document.getElementById('bai8-err');
+  if (bai8Form && arr8Input && bai8Err) {
+    bai8Form.addEventListener('submit', function(e) {
+      var val = arr8Input.value.trim();
+      if (val.length > 0) {
+        // Chỉ cho phép: số nguyên, dấu trừ đầu số, dấu phẩy, dấu cách
+        var regex = /^\s*-?\d+(\s*,\s*-?\d+)*\s*$/;
+        if (!regex.test(val)) {
+          bai8Err.textContent = 'Vui lòng nhập đúng định dạng: các số nguyên, cách nhau bởi dấu phẩy. Ví dụ: -2, 0, 3, ...';
+          bai8Err.style.display = 'block';
+          e.preventDefault();
+          return false;
+        }
+      }
+      bai8Err.style.display = 'none';
+    });
+  }
+});
+</script>
 </body>
 </html>

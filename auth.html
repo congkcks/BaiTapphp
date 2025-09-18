@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập / Đăng ký</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            cursor: pointer;
+            background: var(--neutral);
+            color: var(--black);
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid var(--panel);
+            border-bottom: none;
+            transition: background 0.2s;
+        }
+
+        .auth-tab.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-msg {
+            margin-bottom: 16px;
+            color: #d32f2f;
+            font-size: 15px;
+        }
+
+        .auth-form input {
+            margin-bottom: 14px;
+            margin-top: 0;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .auth-form button {
+            margin-top: 8px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+    <script>
+        function showTab(tab) {
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('tab-login').classList.remove('active');
+            document.getElementById('tab-register').classList.remove('active');
+            if (tab === 'login') {
+                document.getElementById('login-form').classList.add('active');
+                document.getElementById('tab-login').classList.add('active');
+            } else {
+                document.getElementById('register-form').classList.add('active');
+                document.getElementById('tab-register').classList.add('active');
+            }
+        }
+        window.onload = function () { showTab('login'); };
+    </script>
+</head>
+
+<body data-knowledge>
+    <header class="navbar">
+        <div class="navbar-top">
+            <div class="student-info">
+                <span><b>Vũ Văn Hà Công</b></span> | Khoa CNTT | Lớp CNTT4-K63
+            </div>
+        </div>
+        <nav class="navbar-menu">
+            <ul>
+                <li><a href="index.php">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#tai-lieu">Tài liệu ▼</a>
+                    <ul class="dropdown-content">
+                        <li><a href="hoc-php.html">Học PHP</a></li>
+                        <li><a href="hoc-css-html.html">Học CSS &amp; HTML</a></li>
+                        <li><a href="gioi-thieu-js.html">Giới thiệu JS</a></li>
+                        <li><a href="gioi-thieu-welscholl.html">Giới thiệu Welscholl</a></li>
+                        <li><a href="https://www.w3schools.com/" target="_blank">Học W3Schools</a></li>
+                        <li><a href="https://www.w3schools.com/js/default.asp" target="_blank">Học JavaScript trực
+                                tiếp</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="auth.html">Đăng nhập/Đăng ký</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Đăng nhập / Đăng ký</h1>
+        <div class="card" style="max-width:420px;margin:auto;">
+            <div class="auth-tabs">
+                <div class="auth-tab" id="tab-login" onclick="showTab('login')">Đăng nhập</div>
+                <div class="auth-tab" id="tab-register" onclick="showTab('register')">Đăng ký</div>
+            </div>
+            <div id="login-form" class="auth-form">
+                <form method="post" action="#">
+                    <div class="auth-msg" id="login-msg" style="display:none;"></div>
+                    <input type="text" name="login_user" placeholder="Tên đăng nhập" required autocomplete="username">
+                    <input type="password" name="login_pass" placeholder="Mật khẩu" required
+                        autocomplete="current-password">
+                    <button type="submit">Đăng nhập</button>
+                </form>
+            </div>
+            <div id="register-form" class="auth-form">
+                <form method="post" action="#">
+                    <div class="auth-msg" id="register-msg" style="display:none;"></div>
+                    <input type="text" name="reg_user" placeholder="Tên đăng nhập" required autocomplete="username">
+                    <input type="email" name="reg_email" placeholder="Email" required autocomplete="email">
+                    <input type="password" name="reg_pass" placeholder="Mật khẩu" required autocomplete="new-password">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:32px;">
+            <a href="index.php#b11" style="color:var(--accent);font-weight:600;">Quay lại Bài 11 – Đăng nhập/Đăng ký</a>
+        </div>
+    </main>
+</body>
+
+</html>
